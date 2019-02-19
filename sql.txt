@@ -1,0 +1,54 @@
+CREATE TABLE sys_role_test(
+id int4 NOT NULL,
+name varchar(255)  NOT NULL,
+PRIMARY KEY (id)
+)
+CREATE TABLE sys_permission (
+id serial NOT NULL,
+url varchar(255) ,
+role_id int4,
+permission varchar(255),
+PRIMARY KEY (id),
+
+)
+CREATE TABLE sys_role_permission (
+	id int4 NOT NULL,
+	permission_id int4 NOT NULL,
+	role_id int4 NOT NULL,
+ PRIMARY KEY (id)
+)
+CREATE TABLE sys_user_test (
+id serial NOT NULL,
+name varchar(255) ,
+password varchar(255) ,
+PRIMARY KEY (id)
+)
+CREATE TABLE sys_user_role_test (
+id int4 NOT NULL,
+user_id int4 NOT NULL,
+role_id int4 NOT NULL,
+ PRIMARY KEY (id)
+
+)
+;
+CREATE TABLE persistent_logins (
+  username varchar(64) not null,
+  series varchar(64) not null,
+  token varchar(64) not null,
+  last_used timestamp not null,
+  PRIMARY KEY (series)
+);
+
+CREATE TABLE "public"."persistent_logins" (
+"username" varchar(64) COLLATE "default" NOT NULL,
+"series" varchar(64) COLLATE "default" NOT NULL,
+"token" varchar(64) COLLATE "default" NOT NULL,
+"last_used" timestamp NOT NULL,
+CONSTRAINT "persistent_logins_pkey" PRIMARY KEY ("series")
+)
+WITH (OIDS=FALSE)
+;
+
+ALTER TABLE "public"."persistent_logins" OWNER TO "tscdbdev";
+注:角色和用户多对多
+  角色和权限多对多
